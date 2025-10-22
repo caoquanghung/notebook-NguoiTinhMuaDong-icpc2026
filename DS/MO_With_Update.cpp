@@ -1,3 +1,5 @@
+// Tested:
+// - https://www.spoj.com/problems/ADAUNIQ/
 //
 // Notes:
 // - Updates must be set: A(u) = val
