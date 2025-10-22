@@ -75,8 +75,4 @@ void linear_sieve_divisors(int n) {  // init range [1, n-1]
 }
 // }}}
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> de6599047b35712f877d64efe36ce2829dfbcea5
