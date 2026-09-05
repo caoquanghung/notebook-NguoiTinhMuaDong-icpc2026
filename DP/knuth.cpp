@@ -17,7 +17,7 @@
 //       FOR(k = A[i][j-1]..A[i+1][j])
 //         update(dp[i][j])
 //     }
-// 
+//
 // There is another type of Knuth in https://oj.vnoi.info/problem/icpc22_mn_c
 // - f[i][j] = min(f[i-1][last] + cost[last+1][j])
 // - cost satisfies quandrangle inequality
@@ -25,31 +25,29 @@
 //     FORD(j, n, 1)
 //       FOR(last, opt[i-1][j], opt[i][j+1])
 //         update f[i][j] and A[i][j] using f[i-1][last] + cost[last+1][j]
-
 // OPTCUT
-#include "../../template.h"
-
 const int MN = 2011;
 int a[MN], dp[MN][MN], C[MN][MN], A[MN][MN];
 int n;
-
 void solve() {
-    cin >> n; FOR(i,1,n) { cin >> a[i]; a[i] += a[i-1]; }
-    FOR(i,1,n) FOR(j,i,n) C[i][j] = a[j] - a[i-1];
-
-    FOR(i,1,n) dp[i][i] = 0, A[i][i] = i;
-
-    FOR(len,1,n-1)
-        FOR(i,1,n-len) {
-            int j = i + len;
-            dp[i][j] = 2000111000;
-            FOR(k,A[i][j-1],A[i+1][j]) {
-                int cur = dp[i][k-1] + dp[k][j] + C[i][j];
-                if (cur < dp[i][j]) {
-                    dp[i][j] = cur;
-                    A[i][j] = k;
-                }
-            }
-        }
-    cout << dp[1][n] << endl;
+  cin >> n;
+  FOR(i, 1, n) {
+    cin >> a[i];
+    a[i] += a[i - 1];
+  }
+  FOR(i, 1, n) FOR(j, i, n) C[i][j] = a[j] - a[i - 1];
+  FOR(i, 1, n) dp[i][i] = 0, A[i][i] = i;
+  FOR(len, 1, n - 1)
+  FOR(i, 1, n - len) {
+    int j = i + len;
+    dp[i][j] = 2000111000;
+    FOR(k, A[i][j - 1], A[i + 1][j]) {
+      int cur = dp[i][k - 1] + dp[k][j] + C[i][j];
+      if (cur < dp[i][j]) {
+        dp[i][j] = cur;
+        A[i][j] = k;
+      }
+    }
+  }
+  cout << dp[1][n] << endl;
 }
